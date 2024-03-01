@@ -32,17 +32,19 @@ To validate your code using ESLint, run the following command in your terminal:
 
 ```bash
 npm run lint
+```
 
 ### SCSS (Sass Preprocessor)
 
 If you want to use SCSS in your project:
-
+```
 <!-- In a Svelte file, e.g., "MyComponent.svelte" -->
 <style lang="scss">
   @import 'styles/main.scss';
 
   /* Other SCSS styles here */
 </style>
+```
 
 ## Developing
 
