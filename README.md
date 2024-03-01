@@ -23,7 +23,8 @@ To configure Prettier to automatically format your code on save in Visual Studio
 1. Install the Prettier extension from the VSCode marketplace.
 2. Create a `.prettierrc` file at the root of your project with the desired configuration.
 3. Open VSCode settings (`Ctrl+,`) and enable the "Format On Save" option.
-4. Now, every time you save a file, Prettier will automatically format your code according to the configured rules.
+4. Then, search for "Default Formatter" and select "Prettier - Code formatter" to define Prettier as the default formatter for your project.
+5. Now, every time you save a file, Prettier will automatically format your code according to the configured rules.
 
 ### ESLint (Code Validation)
 
@@ -36,14 +37,12 @@ npm run lint
 
 If you want to use SCSS in your project:
 
-```
 <!-- In a Svelte file, e.g., "MyComponent.svelte" -->
 <style lang="scss">
   @import 'styles/main.scss';
 
   /* Other SCSS styles here */
 </style>
-```
 
 ## Developing
 
