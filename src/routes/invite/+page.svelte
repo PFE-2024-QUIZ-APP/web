@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-  <title>Home</title>
+  <title>Invite</title>
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
@@ -52,17 +52,11 @@
           <form>
             <input type="text" class="input">
           </form>
+          <button class="join-game purple">
+            <Play width="1.5em" height="1.5em"/>
+            Rejoindre
+          </button>
         </div>
-      </div>
-      <div class="play-methods">
-        <button class="white">
-          <PlusBoxOutline width="1.5em" height="1.5em"/>
-          Créer un salon
-        </button>
-        <button class="purple">
-          <Play width="1.5em" height="1.5em"/>
-          Rejoindre
-        </button>
       </div>
     </div>
   </div>
@@ -164,6 +158,9 @@
         }
 
         .username {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           margin-left: 50px;
           h2 {
             text-align: center;
@@ -171,30 +168,18 @@
           form > input {
             margin-top: 10px;
           }
-        }
-      }
-
-      .play-methods {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 470px;
-        margin-top: 60px;
-
-        button {
+          button {
           display: flex;
           flex-direction: row;
           justify-content: center;
+          margin-top: 50px;
           width: 220px;
 
         svg {
           margin-right: 10px;
         }
-
         }
-
-      }
-
+      }}
       }
 
     }

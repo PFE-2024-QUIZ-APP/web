@@ -19,58 +19,13 @@
 </script>
 
 <svelte:head>
-  <title>Home</title>
+  <title>Invite</title>
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
 <div class="container">
   <div class="home-header">
     <img src="{logo}" alt="logo">
-    <h2>Le jeu de quiz à potentiel infini</h2>
-  </div>
-
-  <div class="home-content">
-    <div class="how-to-play-container">
-      <h2 class="font-stroke">Comment jouer au jeu ?</h2>
-      <div>
-        LE SLIDER
-      </div>
-    </div>
-
-    <div class="play-container">
-      <div class="play-container-top">
-        <div class="user-avatar">
-          <div class="avatar-container">
-            <img src="{avatar}" alt="avatar utilisateur" class="avatar-image">
-            <button>
-              <Refresh width="2em" height="2em" />
-            </button>
-          </div>
-        </div>
-        <div class="username">
-          <h2>Choisis un avatar et ton pseudo</h2>
-          <form>
-            <input type="text" class="input">
-          </form>
-        </div>
-      </div>
-      <div class="play-methods">
-        <button class="white">
-          <PlusBoxOutline width="1.5em" height="1.5em"/>
-          Créer un salon
-        </button>
-        <button class="purple">
-          <Play width="1.5em" height="1.5em"/>
-          Rejoindre
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="play-footer">
-    <a class="footer-link-1" href="https://www.google.com">Conditions d'utilisation</a>
-    <span>|</span>
-    <a class="footer-link-2" href="https://www.google.com">Contact</a>
   </div>
 </div>
 
@@ -164,6 +119,9 @@
         }
 
         .username {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           margin-left: 50px;
           h2 {
             text-align: center;
@@ -171,30 +129,18 @@
           form > input {
             margin-top: 10px;
           }
-        }
-      }
-
-      .play-methods {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 470px;
-        margin-top: 60px;
-
-        button {
+          button {
           display: flex;
           flex-direction: row;
           justify-content: center;
+          margin-top: 50px;
           width: 220px;
 
         svg {
           margin-right: 10px;
         }
-
         }
-
-      }
-
+      }}
       }
 
     }
