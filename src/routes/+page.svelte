@@ -9,7 +9,7 @@
 
 	let userName: string = '';
 	let room: string = '';
-	// let canDisplayRoom: boolean = false;
+	let isInviteLink: boolean = false;
 
 	// const handleJoinRoom = () => {
 	// 	game.set({ userName, room });
@@ -82,18 +82,26 @@
 					<form>
 						<input type="text" class="input" />
 					</form>
+					{#if !isInviteLink}
+						<button class="purple">
+							<Play width="1.5em" height="1.5em" />
+							Rejoindre
+						</button>
+					{/if}
 				</div>
 			</div>
-			<div class="play-methods">
-				<button class="white">
-					<PlusBoxOutline width="1.5em" height="1.5em" />
-					Créer un salon
-				</button>
-				<button class="purple">
-					<Play width="1.5em" height="1.5em" />
-					Rejoindre
-				</button>
-			</div>
+			{#if isInviteLink}
+				<div class="play-methods">
+					<button class="white">
+						<PlusBoxOutline width="1.5em" height="1.5em" />
+						Créer un salon
+					</button>
+					<button class="purple">
+						<Play width="1.5em" height="1.5em" />
+						Rejoindre
+					</button>
+				</div>
+			{/if}
 		</div>
 	</div>
 
@@ -110,6 +118,8 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		width: 70vw;
+		margin: auto;
 		.home-header {
 			display: flex;
 			flex-direction: column;
@@ -127,7 +137,9 @@
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
-			height: 60vh;
+			width: 100%;
+			height: 45vh;
+  		margin-top: 5vh;
 			.how-to-play-container {
 				display: flex;
 				flex-direction: column;
@@ -137,6 +149,7 @@
 				border: 4px solid #094e92a1;
 				border-radius: 40px;
 				h2 {
+					font-size: 1.4vw;
 					color: white;
 					text-align: center;
 				}
@@ -145,6 +158,7 @@
 				display: flex;
 				flex-direction: column;
 				align-items: center;
+				justify-content: center;
 				width: 40%;
 				padding: 60px 75px;
 				background-color: #094d92;
@@ -183,12 +197,30 @@
 						}
 					}
 					.username {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
 						margin-left: 50px;
 						h2 {
+							font-size: 1.4vw;
 							text-align: center;
 						}
 						form > input {
 							margin-top: 10px;
+							padding: 10px;
+							font-size: 1.4vw;
+						}
+						button {
+							display: flex;
+							flex-direction: row;
+							justify-content: center;
+							align-items: center;
+							margin-top: 30px;
+							width: 220px;
+							font-size: 1vw;
+							svg {
+								margin-right: 10px;
+							}
 						}
 					}
 				}
@@ -203,6 +235,7 @@
 						flex-direction: row;
 						justify-content: center;
 						width: 220px;
+						font-size: 1vw;
 						svg {
 							margin-right: 10px;
 						}
@@ -211,7 +244,8 @@
 			}
 		}
 		.play-footer {
-			margin-top: 50px;
+			position: absolute;
+			bottom: 10vh;
 			.footer-link-1 {
 				margin-right: 20px;
 			}

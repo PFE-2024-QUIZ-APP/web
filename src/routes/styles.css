@@ -5,7 +5,9 @@
 }
 
 body {
-	background: linear-gradient(167deg, rgba(74, 105, 170, 1) 25%, rgba(132, 166, 200, 1) 100%);
+	background: url("../lib/images/bg-image.png"), linear-gradient(167deg, rgba(74, 105, 170, 1) 25%, rgba(132, 166, 200, 1) 100%);
+  background-size: cover;
+  background-position: center;
 	margin: 25px 150px 50px 150px;
 	height: 100vh;
 	overflow-y: hidden;
@@ -42,6 +44,7 @@ button {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	border: none;
+	cursor: pointer;
 }
 
 button.white {
