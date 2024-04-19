@@ -11,6 +11,7 @@
 	import Play from 'svelte-material-icons/Play.svelte';
 	import Refresh from 'svelte-material-icons/Refresh.svelte';
 	import Carousel from '../components/Carousel.svelte'; 
+	import Code from '../components/code.svelte';
 
 	let userName: string = '';
 	let room: string = '';
@@ -34,6 +35,7 @@
 	
 	let show = 1;
 
+	let displayCode: boolean = false;
 </script>
 
 <div class="container">
@@ -63,43 +65,44 @@
 			</ul>
 		</div>
 
-		<div class="play-container">
-			<div class="play-container-top">
-				<div class="user-avatar">
-					<div class="avatar-container">
-						<img src={avatar} alt="avatar utilisateur" class="avatar-image" />
-						<button>
-							<Refresh width="2em" height="2em" />
-						</button>
+			<div class="play-container">
+				<div class="play-container-top">
+					<div class="user-avatar">
+						<div class="avatar-container">
+							<img src={avatar} alt="avatar utilisateur" class="avatar-image" />
+							<button>
+								<Refresh width="2em" height="2em" />
+							</button>
+						</div>
+					</div>
+					<div class="username">
+						<h2>Choisis un avatar et ton pseudo</h2>
+						<form>
+							<input type="text" class="input" />
+						</form>
+						{#if !isInviteLink}
+							<button class="purple" on:click={() => (displayCode = true)}>
+								<Play width="1.5em" height="1.5em" />
+								Rejoindre
+							</button>
+						{/if}
 					</div>
 				</div>
-				<div class="username">
-					<h2>Choisis un avatar et ton pseudo</h2>
-					<form>
-						<input type="text" class="input" />
-					</form>
-					{#if !isInviteLink}
+				{#if isInviteLink}
+					<div class="play-methods">
+						<button class="white">
+							<PlusBoxOutline width="1.5em" height="1.5em" />
+							Créer un salon
+						</button>
 						<button class="purple">
 							<Play width="1.5em" height="1.5em" />
 							Rejoindre
 						</button>
-					{/if}
-				</div>
+					</div>
+				{/if}
 			</div>
-			{#if isInviteLink}
-				<div class="play-methods">
-					<button class="white">
-						<PlusBoxOutline width="1.5em" height="1.5em" />
-						Créer un salon
-					</button>
-					<button class="purple">
-						<Play width="1.5em" height="1.5em" />
-						Rejoindre
-					</button>
-				</div>
-			{/if}
 		</div>
-	</div>
+	{/if}
 
 	<div class="play-footer">
 		<a class="footer-link-1" href="https://www.google.com">Conditions d'utilisation</a>
@@ -135,7 +138,7 @@
 			justify-content: center;
 			width: 100%;
 			height: 45vh;
-  		margin-top: 5vh;
+			margin-top: 5vh;
 			.how-to-play-container {
 				display: flex;
 				flex-direction: column;
