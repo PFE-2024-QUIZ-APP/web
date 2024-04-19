@@ -1,16 +1,40 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import stalactit from '$lib/images/carousel/stalactite.png';
+	import igloo from '$lib/images/carousel/igloo.png';
+	import glace from '$lib/images/carousel/glace.png';
+	import trophé from '$lib/images/carousel/trophé.png';
 	import logo from '$lib/images/logo.svg';
 	import avatar from '$lib/images/avatar_example.png';
 	import { game } from '$lib/stores/game';
 	import PlusBoxOutline from 'svelte-material-icons/PlusBoxOutline.svelte';
 	import Play from 'svelte-material-icons/Play.svelte';
 	import Refresh from 'svelte-material-icons/Refresh.svelte';
+	import Carousel from '../components/Carousel.svelte'; 
 	import Code from '../components/code.svelte';
 
 	let userName: string = '';
 	let room: string = '';
 	let isInviteLink: boolean = false;
+
+	// Slider
+	let items = [
+		{label:'one', title: 'Choisissez un mode de jeu', text:'L\'host doit choisir entre le mode IA ou liste', alt: "stalatite",  img: stalactit},
+		{label:'two', title: 'Choisissez un theme', text:'L\'host doit choisir un theme avec un mot ou dans la liste',alt: "igloo", img: igloo},
+		{label:'three', title: 'Attente dans la room', text:'Une fois que tout les particpants sont prêt, la partie se lance', alt: 'glace', img: glace},
+		{label:'four', title: 'Remportez la partie !', text:'Gagnez en répondant correctement aux plus de questions', alt: 'trophé', img: trophé},
+	];
+	
+	let current = 0;
+	
+	function mod(n, m) {
+		return ((n % m) + m) % m;
+	}
+	
+	let auto_interval = null;
+	
+	let show = 1;
+
 	let displayCode: boolean = false;
 </script>
 
@@ -20,14 +44,26 @@
 		<h2>Le jeu de quiz à potentiel infini</h2>
 	</div>
 
-	{#if displayCode}
-		<Code />
-	{:else}
-		<div class="home-content">
-			<div class="how-to-play-container">
-				<h2 class="font-stroke">Comment jouer au jeu ?</h2>
-				<div>LE SLIDER</div>
-			</div>
+	<div class="home-content">
+		<div class="how-to-play-container">
+			<h2 class="font-stroke">Comment jouer au jeu ?</h2>
+			<Carousel bind:current items={items} let:item bind:show>
+				<div class="carousel-item">
+					<div class="carousel-item__img">
+						<img src="{item.img}" alt="{item.alt}">
+					</div>
+					<div class="carousel-item__content">
+						<h3 class="carousel-item__content-title">{item.title}</h3>
+						<p class="carousel-item__content-text">{item.text}</p>
+					</div>
+				</div>
+			</Carousel>
+			<ul class="pagination">
+				{#each items as item,i}
+					<li class="pagination__item" on:click={()=>current=i} style='width:{i==current?'36px':'16px'}; background-color:{i==current?'#fff':'#BBB'};'></li>
+				{/each}
+			</ul>
+		</div>
 
 			<div class="play-container">
 				<div class="play-container-top">
@@ -204,6 +240,43 @@
 						}
 					}
 				}
+			}
+		}
+		.carousel-item {
+			display: flex;
+			justify-content: space-around;
+			flex-direction: column;
+			flex-wrap: wrap;
+			align-items: center;
+			&__img {
+				max-height: 150px;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				img {
+					width: auto;
+    				height: 100%;
+				}
+			}
+			&__content {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 20px;
+				&-text {
+					text-align: center;
+				}
+			}
+		}
+		.pagination {
+			display: flex;
+			gap: 10px;
+			&__item {
+				cursor: pointer;
+				height: 16px;
+				border-radius: 10px;
+				transition: 0.3s;
 			}
 		}
 		.play-footer {
