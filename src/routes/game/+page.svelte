@@ -3,6 +3,8 @@
 	import { io } from '$lib/webSocketConnection';
 	import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
+	import Player from '../../components/Player.svelte';
+	import Countdown from '../../components/Countdown.svelte';
 
 	const { userName, room } = get(game);
 
@@ -19,3 +21,5 @@
 		});
 	});
 </script>
+
+<Player />

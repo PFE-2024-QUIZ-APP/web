@@ -6,7 +6,7 @@
 	import PlusBoxOutline from 'svelte-material-icons/PlusBoxOutline.svelte';
 	import Play from 'svelte-material-icons/Play.svelte';
 	import Refresh from 'svelte-material-icons/Refresh.svelte';
-	import Code from '../components/code.svelte';
+	import Code from '../components/Code.svelte';
 
 	let userName: string = '';
 	let room: string = '';
