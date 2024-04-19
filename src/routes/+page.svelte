@@ -65,44 +65,43 @@
 			</ul>
 		</div>
 
-			<div class="play-container">
-				<div class="play-container-top">
-					<div class="user-avatar">
-						<div class="avatar-container">
-							<img src={avatar} alt="avatar utilisateur" class="avatar-image" />
-							<button>
-								<Refresh width="2em" height="2em" />
-							</button>
-						</div>
-					</div>
-					<div class="username">
-						<h2>Choisis un avatar et ton pseudo</h2>
-						<form>
-							<input type="text" class="input" />
-						</form>
-						{#if !isInviteLink}
-							<button class="purple" on:click={() => (displayCode = true)}>
-								<Play width="1.5em" height="1.5em" />
-								Rejoindre
-							</button>
-						{/if}
+		<div class="play-container">
+			<div class="play-container-top">
+				<div class="user-avatar">
+					<div class="avatar-container">
+						<img src={avatar} alt="avatar utilisateur" class="avatar-image" />
+						<button>
+							<Refresh width="2em" height="2em" />
+						</button>
 					</div>
 				</div>
-				{#if isInviteLink}
-					<div class="play-methods">
-						<button class="white">
-							<PlusBoxOutline width="1.5em" height="1.5em" />
-							Créer un salon
-						</button>
-						<button class="purple">
+				<div class="username">
+					<h2>Choisis un avatar et ton pseudo</h2>
+					<form>
+						<input type="text" class="input" />
+					</form>
+					{#if !isInviteLink}
+						<button class="purple" on:click={() => (displayCode = true)}>
 							<Play width="1.5em" height="1.5em" />
 							Rejoindre
 						</button>
-					</div>
-				{/if}
+					{/if}
+				</div>
 			</div>
+			{#if isInviteLink}
+				<div class="play-methods">
+					<button class="white">
+						<PlusBoxOutline width="1.5em" height="1.5em" />
+						Créer un salon
+					</button>
+					<button class="purple">
+						<Play width="1.5em" height="1.5em" />
+						Rejoindre
+					</button>
+				</div>
+			{/if}
 		</div>
-	{/if}
+	</div>
 
 	<div class="play-footer">
 		<a class="footer-link-1" href="https://www.google.com">Conditions d'utilisation</a>
