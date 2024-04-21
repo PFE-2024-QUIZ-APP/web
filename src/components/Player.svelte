@@ -1,6 +1,7 @@
 <script lang="ts">
     	import avatar from '$lib/images/avatar_example.png';
         import crown from '$lib/images/crown.png';
+        import vide from '$lib/images/joueur-vide.png';
 </script>
 
 <div class="joueurs">
@@ -84,26 +85,39 @@
                 <div class="points">100000 pts</div>
             </div>
         </div>
-        <div class="row-joueur">
+
+        <div class="row-joueur row-joueur-vide">
             <div class="user-avatar">
                 <div class="avatar-container">
-                    <img src={avatar} alt="avatar utilisateur" class="avatar-image" />
+                    <img src={vide} alt="avatar utilisateur" class="avatar-image" />
                 </div>
             </div>
             <div class="infos-joueur">
-                <div class="pseudo">Jonathan</div>
-                <div class="points">100000 pts</div>
+                <div class="pseudo">Vide</div>
+                <!-- <div class="points">0 pts</div> -->
             </div>
         </div>
-        <div class="row-joueur">
+        <div class="row-joueur row-joueur-vide">
             <div class="user-avatar">
                 <div class="avatar-container">
-                    <img src={avatar} alt="avatar utilisateur" class="avatar-image" />
+                    <img src={vide} alt="avatar utilisateur" class="avatar-image" />
                 </div>
             </div>
             <div class="infos-joueur">
-                <div class="pseudo">Jonathan</div>
-                <div class="points">100000 pts</div>
+                <div class="pseudo">Vide</div>
+                <!-- <div class="points">0 pts</div> -->
+            </div>
+        </div>
+
+        <div class="row-joueur row-joueur-vide">
+            <div class="user-avatar">
+                <div class="avatar-container">
+                    <img src={vide} alt="avatar utilisateur" class="avatar-image" />
+                </div>
+            </div>
+            <div class="infos-joueur">
+                <div class="pseudo">Vide</div>
+                <!-- <div class="points">0 pts</div> -->
             </div>
         </div>
         
@@ -118,8 +132,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 330px;
-        height: 600px;
+        width: 360px;
+        height: 700px;
         background-color: #285f9f;
         border-radius: 20px;
     }
@@ -132,6 +146,9 @@
         width: 300px;
         padding: 25px 15px 25px 15px;
         border-radius: 20px 20px 0px 0px;
+    }
+    .nb-joueurs-number{
+        padding-left : 7px;
     }
 
     /* nb-joueurs center */
@@ -147,22 +164,20 @@
 		align-items: center;
 		justify-content: left;
 		width: 300px;
-		padding: 15px;
+		padding: 10px;
 		background-color: #094D92;
         margin-bottom: 3px;
+        border-radius: 8px;
         /* border-bottom: #285f9f solid 3px; */
     }
 
     .row-joueur:first-child {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+        margin-top: 0;
+    }
+    .row-joueur:last-child {
+        margin-bottom: 0 ;
     }
 
-    .row-joueur:last-child {
-        border-bottom: none;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
 
     .infos-joueur {
         display: flex;
@@ -181,7 +196,15 @@
 		height: 50px;
 		border-radius: 50%;
 		overflow: hidden;
+        border: 1px solid #fff;
 	}
+    .row-joueur-vide .avatar-container{
+        border: 1px solid #84A6C8 ;
+    }
+    .row-joueur-vide .infos-joueur {
+        color: #84A6C8;
+    }
+
 	.avatar-container img {
 		width: 100%;
 		height: 100%;
@@ -197,27 +220,20 @@
 
     .liste-joueurs {
     height: 600px;
-    width: 330px; 
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
-}
+    }
 
-.liste-joueurs::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-    background-color: #094D92;
-}
+    .liste-joueurs::-webkit-scrollbar {
+        width: 5px;
+        height: 10px;
+        background-color: #84A6C8 ;
+    }
 
-.liste-joueurs::-webkit-scrollbar-thumb {
-    background-color: #84A6C8;
-    border-radius: 10px;
-}
-
-.liste-joueurs::-webkit-scrollbar {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
+    .liste-joueurs::-webkit-scrollbar-thumb {
+        background-color: #fff;
+        border-radius: 10px;
+    }
 
 
 </style>
