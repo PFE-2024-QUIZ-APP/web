@@ -185,16 +185,6 @@
 				justify-content: space-between;
 				width: 470px;
 				margin-top: 20px;
-				button {
-					display: flex;
-					flex-direction: row;
-					justify-content: center;
-					width: 220px;
-					font-size: 1vw;
-					svg {
-						margin-right: 10px;
-					}
-				}
 			}
 		}
 	}
