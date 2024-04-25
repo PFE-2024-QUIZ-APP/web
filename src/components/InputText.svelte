@@ -1,4 +1,8 @@
-<input type="text" class="input" />
+<script>
+	export let text = '';
+</script>
+
+<input type="text" class="input" bind:value={text} />
 
 <style lang="scss">
 	input {

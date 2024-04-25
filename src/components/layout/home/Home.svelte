@@ -8,8 +8,37 @@
 	import glace from '$lib/images/carousel/glace.png';
 	import trophé from '$lib/images/carousel/trophé.png';
 	import Carousel from '../../Carousel.svelte';
+	import { createEventDispatcher } from 'svelte';
+	import { goto } from '$app/navigation';
+	import { gameCreation } from '$lib/stores/gameCreation';
+
+	const dispatch = createEventDispatcher();
 
 	let isInvitedWithLink: boolean = false;
+
+	let pseudo: string = '';
+
+	$: gameCreation.set({
+		userName: pseudo,
+		avatar: 'avatar_1',
+		room: null,
+		isCreation: false
+	});
+
+	const handleGoToCodePage = () => {
+		dispatch('goToCodePage');
+	};
+
+	const handleGoToGame = () => {
+		gameCreation.update((game) => {
+			return {
+				...game,
+				isCreation: true
+			};
+		});
+
+		goto('/game');
+	};
 
 	// Slider
 	let items = [
@@ -87,17 +116,17 @@
 			<div class="username">
 				<h2>Choisis un avatar et ton pseudo</h2>
 				<form>
-					<InputText />
+					<InputText bind:text={pseudo} />
 				</form>
 				{#if isInvitedWithLink}
-					<Button color="purple" icon="play" title="Rejoindre" />
+					<Button color="purple" icon="play" title="Rejoindre" on:click={handleGoToCodePage} />
 				{/if}
 			</div>
 		</div>
 		{#if !isInvitedWithLink}
 			<div class="play-methods">
-				<Button color="white" icon="plus" title="Créer un salon" on:click={() => alert('sqsdsq')} />
-				<Button color="purple" icon="play" title="Rejoindre" />
+				<Button color="white" icon="plus" title="Créer un salon" on:click={handleGoToGame} />
+				<Button color="purple" icon="play" title="Rejoindre" on:click={handleGoToCodePage} />
 			</div>
 		{/if}
 	</div>

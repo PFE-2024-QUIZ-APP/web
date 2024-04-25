@@ -1,8 +1,9 @@
 interface Player {
 	id: string;
-	userName: string;
+	name: string;
 	score: number;
 	avatar: string;
+	responses: string[];
 }
 
 interface Question {
