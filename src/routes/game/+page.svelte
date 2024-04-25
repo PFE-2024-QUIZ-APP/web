@@ -1,23 +1,16 @@
 <script lang="ts">
-	import { game } from '$lib/stores/game';
-	import { io } from '$lib/webSocketConnection';
 	import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
+	import { gameCreation } from '$lib/stores/gameCreation';
+	import { onConnect } from '$lib/socket/listeners';
 	import Player from '../../components/Player.svelte';
 	import Countdown from '../../components/Countdown.svelte';
 
-	const { userName, room } = get(game);
+	const { userName, room, avatar, isCreation }: GameCreationModel = get(gameCreation);
 
 	onMount(() => {
-		io.on('connect', () => {
-			io.emit('join', room, userName, 'avatar_1');
-
-			io.on('roomData', (data) => {
-				console.log(data);
-			});
-		});
-		io.on('disconnect', () => {
-			console.log('disconnected');
+		onConnect(() => {
+			console.log('connected');
 		});
 	});
 </script>
