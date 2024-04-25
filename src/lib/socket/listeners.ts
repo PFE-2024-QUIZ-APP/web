@@ -12,18 +12,22 @@ export const onEditRoom = (callback: (data: EditRoomOutput) => void) => {
     io.on("editRoom", (data) => callback(data))
 }
 
-export const onStartGame = (callback: (data: StartGameOutput) => void) => {
-    io.on("startGame", (data) => callback(data))
-}
-
 export const onEndGame = (callback: (data: EndGameOutput) => void) => {
     io.on("endGame", (data) => callback(data))
 }
 
-export const onEndQuestion = (callback: (data: EndQuestionOutput) => void) => {
-    io.on("endQuestion", (data) => callback(data))
-}
-
 export const onNextQuestion = (callback: (data: NextQuestionOutput) => void) => {
     io.on("nextQuestion", (data) => callback(data))
+}
+
+export const onRoomNoFound = (callback: (data: RoomNoFoundOutput) => void) => {
+    io.on("roomNoFound", (data) => callback(data))
+}
+
+export const onAllResponse = (callback: (data: AllResponseOutput) => void) => {
+    io.on("allResponse", (data) => callback(data))
+}
+
+export const onTimeEnded = (callback: (data: TimeEndedOutput) => void) => {
+    io.on("timeEnded", (data) => callback(data))
 }
