@@ -4,6 +4,7 @@
 	import InputText from '../../InputText.svelte';
 	let isInvitedWithLink: boolean = false;
 	import logo from '$lib/images/logo.svg';
+	import Player from '../../Player.svelte';
 </script>
 
 <div class="left-container">
@@ -12,15 +13,8 @@
 	<div class="players-list">
 		<h2>Joueurs: 12</h2>
 		<ul>
-			<li>Element</li>
-			<li>Element</li>
-			<li>Element</li>
-			<li>Element</li>
-			<li>Element</li>
-			<li>Element</li>
-			<li>Element</li>
-			<li>Element</li>
-			<li>Element</li>
+			<!-- <Player />
+			 -->
 		</ul>
 	</div>
 </div>
