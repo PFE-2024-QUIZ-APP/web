@@ -1,30 +1,33 @@
 <script lang="ts">
 	import cinema from '$lib/images/theme/cinema.png';
+	import { getThemes } from "../../../database/config";
 
-	const items = [
-		{ id: 1, image: cinema, title: 'Geographie' },
-		{ id: 2, image: cinema, title: 'Musique' },
-		{ id: 3, image: cinema, title: 'Histoire' },
-		{ id: 4, image: cinema, title: 'Sport' },
-		{ id: 5, image: cinema, title: 'Animaux' },
-		{ id: 6, image: cinema, title: 'Science' },
-		{ id: 7, image: cinema, title: 'Cinéma' },
-		{ id: 8, image: cinema, title: 'Jeux-vidéos' },
-		{ id: 9, image: cinema, title: 'Ecole' },
-		{ id: 10, image: cinema, title: 'Culture G' },
-		{ id: 11, image: cinema, title: "Gen' 80-90" },
-		{ id: 12, image: cinema, title: 'Manga' },
-		{ id: 13, image: cinema, title: 'Nourriture' }
-	];
+	interface Theme {
+		id: string;
+		name: string;
+  	}
+
+	let themes: Theme[] = []; // Initialize empty array to hold themes
+	  
+  	const fetchData = async () => { // Function to fetch themes
+		try {
+			await getThemes().then((response ) => themes = response as Theme[]);
+		} catch (error) {
+			console.error('Error fetching themes:', error);
+		}
+  	};
+
+  	fetchData(); 
+
 </script>
 
 <div class="grid-container">
-	{#each items as item, index}
+	{#each themes as theme, index}
 		<div class="grid-item">
-			<img src={item.image} alt={'Image ' + (index + 1)} />
-			<p>{item.title}</p>
+			<img src="{cinema}" alt="cinéma">
+			<p>{theme.name}</p>
 		</div>
-	{/each}
+	{/each} 
 </div>
 
 <style lang="scss">
