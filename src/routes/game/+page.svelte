@@ -7,6 +7,7 @@
 	import { createRoomEmit, joinRoomEmit } from '$lib/socket/emitters';
 	import { goto } from '$app/navigation';
 	import Leaderboard from '../../components/Leaderboard.svelte';
+	import QuestionBlock from '../../components/layout/questionBlock/QuestionBlock.svelte';
 
 	// Main layouts
 	import LeftContainer from '../../components/layout/leftContainer/LeftContainer.svelte';

@@ -179,14 +179,31 @@ button.white {
 	box-shadow: 0px 5px #8b85c1;
 }
 
+button.white:hover {
+	background: #eeeeee;
+}
+
+
 button.white svg {
 	margin-right: 10px;
+}
+
+button.white:active, button.purple:active {
+	box-shadow: none;
+	box-shadow: 0px 3px #8b85c1;
+	transform: translate(0, 3px);
+	-webkit-transform: translate(0, 3px);
+	-moz-transform: translate(0, 3px);
 }
 
 button.purple {
 	background: #8b85c1;
 	color: white;
 	box-shadow: 0px 5px white;
+}
+
+button.purple:hover {
+	background: #755B86;
 }
 
 button.purple svg {

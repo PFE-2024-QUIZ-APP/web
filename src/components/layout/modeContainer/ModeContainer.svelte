@@ -5,11 +5,12 @@
 	let isInvitedWithLink: boolean = false;
 	import { fade } from 'svelte/transition';
 	import GridContainer from '../gridContainer/GridContainer.svelte';
+	import ChooseModeContainer from '../chooseModeContainer/ChooseModeContainer.svelte';
 
 	let showCopyLink = false;
 	let copyLinkTransition = false;
-	let isDisplayChooseMode = false;
-	let isDisplayChooseTheme = true;
+	let isDisplayChooseMode = true;
+	let isDisplayChooseTheme = false;
 	let isDisplayWaitForHost = false;
 
 	// To do
@@ -29,14 +30,16 @@
 
 <div class="mode-container">
 	<div class="content">
-		<h2>Salon 1BKPK</h2>
-		<h3>
-			{#if isDisplayChooseTheme}
-				Selectionne un theme
-			{:else}
-				Selectionne un mode
-			{/if}
-		</h3>
+		<div class="header">
+			<h2>Salon 1BKPK</h2>
+			<h3>
+				{#if isDisplayChooseTheme}
+					Selectionne un theme
+				{:else}
+					Selectionne un mode
+				{/if}
+			</h3>
+		</div>
 		{#if isDisplayChooseTheme}
 			<GridContainer />
 		{/if}
@@ -56,6 +59,9 @@
 
 				<Button color="purple" icon="play" title="Lancer" />
 			</div>
+		{/if}
+		{#if isDisplayChooseMode}
+			<ChooseModeContainer />
 		{/if}
 	</div>
 
@@ -82,6 +88,8 @@
 		margin-top: -7vw;
 
 		.content {
+			position: relative;
+
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -92,13 +100,17 @@
 			padding: 50px 75px;
 			border-radius: 40px 0 40px 40px;
 
-			h2 {
-				font-size: 2.2vw;
-			}
+			.header {
+				position: absolute;
+				top: 3vw;
+				h2 {
+					font-size: 2.2vw;
+				}
 
-			h3 {
-				margin: 2vw 0 1.5vw 0;
-				font-size: 1.2vw;
+				h3 {
+					margin: 2vw 0 1.5vw 0;
+					font-size: 1.2vw;
+				}
 			}
 
 			.actions-button {

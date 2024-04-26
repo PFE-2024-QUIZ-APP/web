@@ -23,7 +23,8 @@
 
 <div class="grid-container">
 	{#each themes as theme, index}
-		<div class="grid-item">
+		<div class="grid-item" id="{theme.id}">
+			<!-- à modifier une fois les images en db -->
 			<img src="{cinema}" alt="cinéma">
 			<p>{theme.name}</p>
 		</div>
@@ -35,7 +36,7 @@
 		display: grid;
 		grid-template-columns: repeat(4, 1fr); // 4 colonnes égales
 		gap: 10px;
-		margin: auto;
+		margin: 5vw auto 0 auto;
 		max-height: 20vw;
 		overflow-y: scroll;
 		overflow-x: none;
