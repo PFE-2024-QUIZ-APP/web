@@ -15,7 +15,6 @@ interface Question {
 interface GameModel {
 	players: Player[];
 	room: string;
-	questions: Question[];
 }
 
 interface NextQuestionOutput {

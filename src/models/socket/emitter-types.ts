@@ -13,6 +13,10 @@ interface JoinRoomInput {
     avatar: string;
 }
 
+interface JoinRoomCallBackInput {
+    status: string;
+}
+
 interface ResponsePlayerInput {
     response: string;
     indexQuestion: number;

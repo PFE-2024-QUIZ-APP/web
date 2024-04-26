@@ -1,7 +1,6 @@
 interface RoomDataOutput {
     roomId: string;
     players: Player[];
-    questions: Question[];
 }
 
 interface EditRoomOutput {
