@@ -23,7 +23,8 @@
 
 <div class="grid-container">
 	{#each themes as theme, index}
-		<div class="grid-item">
+		<div class="grid-item" id="{theme.id}">
+			<!-- à modifier une fois les images en db -->
 			<img src="{cinema}" alt="cinéma">
 			<p>{theme.name}</p>
 		</div>

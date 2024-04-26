@@ -5,7 +5,8 @@
 	import { game } from '$lib/stores/game';
 	import { onConnect, onRoomData } from '$lib/socket/listeners';
 	import { createRoomEmit, joinRoomEmit } from '$lib/socket/emitters';
-  import { goto } from '$app/navigation';
+  	import { goto } from '$app/navigation';
+	import QuestionBlock from '../../components/layout/questionBlock/QuestionBlock.svelte';
 
 	// Main layouts
 	import LeftContainer from '../../components/layout/leftContainer/LeftContainer.svelte';
