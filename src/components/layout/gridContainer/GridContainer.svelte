@@ -32,7 +32,7 @@
 		display: grid;
 		grid-template-columns: repeat(4, 1fr); // 4 colonnes égales
 		gap: 10px;
-		margin: auto;
+		margin: 5vw auto 0 auto;
 		max-height: 20vw;
 		overflow-y: scroll;
 		overflow-x: none;
