@@ -3,6 +3,8 @@
 	import Play from 'svelte-material-icons/Play.svelte';
 	import PlusBoxOutline from 'svelte-material-icons/PlusBoxOutline.svelte';
 	import Close from 'svelte-material-icons/CloseBoxOutline.svelte';
+	import Replay from 'svelte-material-icons/Replay.svelte';
+	import Home from 'svelte-material-icons/Home.svelte';
 
 	// Props
 	export let color: string; // Available classes : purple and white, from parent style.css
@@ -21,6 +23,14 @@
 
 	{#if icon == 'close'}
 		<Close width="1.5em" height="1.5em" />
+	{/if}
+
+	{#if icon == 'replay'}
+		<Replay width="1.5em" height="1.5em" />
+	{/if}
+
+	{#if icon == 'home'}
+	<Home width="1.5em" height="1.5em" />
 	{/if}
 	{title}
 </button>
