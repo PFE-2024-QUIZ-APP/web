@@ -9,6 +9,17 @@
 	let isDisplayHomePage: boolean = true;
 	let isDisplayCodePage: boolean = false;
 	let isDisplayFooter: boolean = true;
+
+	const handleDisplayHomePage = () => {
+		isDisplayHomePage = true;
+		isDisplayCodePage = false;
+	};
+
+	const handleDisplayCodePage = () => {
+		isDisplayHomePage = false;
+		isDisplayCodePage = true;
+	};
+
 </script>
 
 <div class="container">
@@ -17,7 +28,7 @@
 	{/if}
 
 	{#if isDisplayHomePage}
-		<Home />
+		<Home on:goToCodePage={handleDisplayCodePage} />
 	{/if}
 
 	{#if isDisplayCodePage}

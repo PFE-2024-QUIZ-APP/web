@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { gameCreation } from '$lib/stores/gameCreation';
 	import Play from 'svelte-material-icons/Play.svelte';
 
 	let code = ['', '', '', '', '']; // Initialise le code avec 5 traits vides
@@ -28,8 +30,13 @@
 	// Déclarer la fonction pour rejoindre
 	function join() {
 		const codeUpperCased = code.join('').toUpperCase();
-		// Afficher le code dans la console
-		console.log(codeUpperCased);
+
+		gameCreation.update((value) => {
+			value.room = codeUpperCased;
+			return value;
+		});
+
+		goto('/game');
 	}
 </script>
 

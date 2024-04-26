@@ -1,35 +1,42 @@
 <script lang="ts">
-	import { game } from '$lib/stores/game';
-	import { io } from '$lib/webSocketConnection';
-	import { onMount } from 'svelte';
+  import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
-
-	const { userName, room } = get(game);
-
-	onMount(() => {
-		io.on('connect', () => {
-			io.emit('join', room, userName, 'avatar_1');
-
-			io.on('roomData', (data) => {
-				console.log(data);
-			});
-		});
-		io.on('disconnect', () => {
-			console.log('disconnected');
-		});
-	});
+	import { gameCreation } from '$lib/stores/gameCreation';
+	import { game } from '$lib/stores/game';
+	import { onConnect, onRoomData } from '$lib/socket/listeners';
+	import { createRoomEmit, joinRoomEmit } from '$lib/socket/emitters';
+  import { goto } from '$app/navigation';
 
 	// Main layouts
 	import LeftContainer from '../../components/layout/leftContainer/LeftContainer.svelte';
 	import ModeContainer from '../../components/layout/modeContainer/ModeContainer.svelte';
-	import Code from '../../components/layout/code/Code.svelte';
-	import Header from '../../components/layout/header/Header.svelte';
-	import Footer from '../../components/layout/footer/Footer.svelte';
 
+  const { userName, room, avatar, isCreation }: GameCreationModel = get(gameCreation);
+  
 	let isDisplayHomePage: boolean = true;
-
 	let isDisplayLeftContainer: boolean = true;
 	let isDisplayRightModeContainer: boolean = true;
+  
+  onMount(() => {
+		onConnect(() => {
+			if (userName && avatar) {
+				if (isCreation) {
+					createRoomEmit({ userName, avatar });
+				} else if (room) {
+					joinRoomEmit({ userName, avatar, room });
+				} else {
+					console.error('room is required');
+				}
+			} else {
+				console.error('userName and avatar are required');
+				goto('/');
+			}
+		});
+	});
+  
+  onRoomData((data) => {
+		game.set({ ...data, room: data.roomId });
+	});
 </script>
 
 <div class="container">
