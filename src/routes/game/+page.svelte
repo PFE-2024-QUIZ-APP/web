@@ -1,17 +1,23 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+  import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
 	import { gameCreation } from '$lib/stores/gameCreation';
 	import { game } from '$lib/stores/game';
 	import { onConnect, onRoomData } from '$lib/socket/listeners';
 	import { createRoomEmit, joinRoomEmit } from '$lib/socket/emitters';
-	import Player from '../../components/Player.svelte';
-	import Countdown from '../../components/Countdown.svelte';
-	import { goto } from '$app/navigation';
+  import { goto } from '$app/navigation';
 
-	const { userName, room, avatar, isCreation }: GameCreationModel = get(gameCreation);
+	// Main layouts
+	import LeftContainer from '../../components/layout/leftContainer/LeftContainer.svelte';
+	import ModeContainer from '../../components/layout/modeContainer/ModeContainer.svelte';
 
-	onMount(() => {
+  const { userName, room, avatar, isCreation }: GameCreationModel = get(gameCreation);
+  
+	let isDisplayHomePage: boolean = true;
+	let isDisplayLeftContainer: boolean = true;
+	let isDisplayRightModeContainer: boolean = true;
+  
+  onMount(() => {
 		onConnect(() => {
 			if (userName && avatar) {
 				if (isCreation) {
@@ -27,10 +33,39 @@
 			}
 		});
 	});
-
-	onRoomData((data) => {
+  
+  onRoomData((data) => {
 		game.set({ ...data, room: data.roomId });
 	});
 </script>
 
-<Player />
+<div class="container">
+	<div class="home-content">
+		{#if isDisplayLeftContainer}
+			<LeftContainer />
+		{/if}
+		{#if isDisplayRightModeContainer}
+			<ModeContainer />
+		{/if}
+	</div>
+</div>
+
+<style lang="scss">
+	.container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 77vw;
+		margin: 8vw auto 0 auto;
+
+		.home-content {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			width: 100%;
+			height: 55vh;
+			margin-top: 5vh;
+		}
+	}
+</style>
