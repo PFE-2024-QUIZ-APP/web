@@ -7,12 +7,12 @@
 
   let isMuted = false;
 
-	// Variable pour le ranger slider
-	let minValue = 0;
-  let maxValue = 100;
-  let currentValue = 50;
-
-	let previousVolume = currentValue;
+	// Variable pour gérer le volume
+	let defaultVolume = 0.2;
+	let minVolume = 0;
+  let maxVolume = 100;
+  let currentVolume = 20;
+	let previousVolume = currentVolume;
 
 	// Cast de la musique
 	const sound = new Howl({
@@ -23,32 +23,31 @@
 	});
 
 	// Volume par default de la musique
-	Howler.volume(0.5);
+	Howler.volume(defaultVolume);
 
 	// Cast de la musique au chargement de la page
 	sound.once('load', function(){
 		sound.play();
-		console.log('true')
 	});
 
-	// Methode pour mute le son
+	// Fonction pour mute le son
 	function toggleMute() {
 
 		if (isMuted) {
-			currentValue = previousVolume;
+			currentVolume = previousVolume;
     } else {
-			previousVolume = currentValue;
-      currentValue = 0;
+			previousVolume = currentVolume;
+      currentVolume = 0;
     }
 
     isMuted = !isMuted;
 		sound.mute(isMuted);
   }
 
-	// Methode pour gérer le son
+	// Fonction pour gérer le son
   function handleChange(event) {
-		currentValue = parseInt(event.target.value);
-		let convertVolume = currentValue / 100;
+		currentVolume = parseInt(event.target.value);
+		let convertVolume = currentVolume / 100;
 		Howler.volume(convertVolume);
   }
 
@@ -58,20 +57,19 @@
 	<main>
 		<slot />
 	</main>
-
-
-<div class="volume-controls">
-  <input type="range" min={minValue} max={maxValue} value={currentValue} on:input={handleChange} />
-	<div class="mute-button">
-		<button on:click={toggleMute}>
-			{#if isMuted}
-				<VolumeMute width="2em" height="2em" color="white"/>
-			{:else}
-				<VolumeSource width="2em" height="2em" color="white"/>
-			{/if}
-		</button>
+	
+	<div class="volume-controls">
+		<input type="range" min={minVolume} max={maxVolume} value={currentVolume} on:input={handleChange} />
+		<div class="mute-button">
+			<button on:click={toggleMute}>
+				{#if isMuted}
+					<VolumeMute width="2em" height="2em" color="white"/>
+				{:else}
+					<VolumeSource width="2em" height="2em" color="white"/>
+				{/if}
+			</button>
+		</div>
 	</div>
-</div>
 
 </div>
 
