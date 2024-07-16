@@ -1,5 +1,4 @@
 <script lang="ts">
-	import avatar from '$lib/images/avatar_example.png';
 	import Refresh from 'svelte-material-icons/Refresh.svelte';
 	import Button from '../../Button.svelte';
 	import InputText from '../../InputText.svelte';
@@ -11,7 +10,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { gameCreation } from '$lib/stores/gameCreation';
-
+	
 	const dispatch = createEventDispatcher();
 
 	let isInvitedWithLink: boolean = false;
@@ -74,6 +73,28 @@
 
 	let current = 0;
 	let show = 1;
+
+	let currentAvatarIndex = 0;
+	const avatars = [
+    'src/lib/images/avatar/avatar_1.png',
+    'src/lib/images/avatar/avatar_2.png',
+    'src/lib/images/avatar/avatar_3.png',
+    'src/lib/images/avatar/avatar_4.png',
+    'src/lib/images/avatar/avatar_5.png',
+    'src/lib/images/avatar/avatar_6.png',
+    'src/lib/images/avatar/avatar_7.png',
+    'src/lib/images/avatar/avatar_8.png',
+  ];
+
+	const refreshAvatar = () => {
+		if(currentAvatarIndex < 7) {
+			currentAvatarIndex++;
+		} else {
+			currentAvatarIndex = 0;
+		}
+	}
+
+
 </script>
 
 <div class="home-content">
@@ -107,10 +128,12 @@
 		<div class="play-container-top">
 			<div class="user-avatar">
 				<div class="avatar-container">
-					<img src={avatar} alt="avatar utilisateur" class="avatar-image" />
-					<button>
-						<Refresh width="2em" height="2em" />
-					</button>
+					<img src={avatars[currentAvatarIndex]} alt="avatar utilisateur" class="avatar-image" />
+					<div class="refresh-button">
+						<button on:click={refreshAvatar}>
+							<Refresh width="2em" height="2em" />
+						</button>
+					</div>
 				</div>
 			</div>
 			<div class="username">
@@ -180,21 +203,35 @@
 							border: 4px solid white;
 							border-radius: 300px;
 						}
-						button {
-							display: flex;
-							justify-content: center;
-							align-items: center;
+
+						.refresh-button {
 							position: absolute;
-							bottom: 10px;
-							right: 10px;
+							bottom: 5px;
+							right: 0px;
+							display: flex;
+							align-items: center;
+							justify-content: center;
 							width: 40px;
 							height: 40px;
-							background: white;
-							border: none;
-							border-radius: 50px;
-							text-align: center;
-							color: #8b85c1;
+							background-color: white;
+							border: 3px solid white;
+							border-radius: 100px;
+
+							button {
+								background-color: transparent;
+								color: #8b85c1;
+							}
+
+							button:hover {
+								color: white;
+							}
 						}
+
+						.refresh-button:hover {
+							background-color: #8b85c1;
+							border: 3px solid #8b85c1;
+						}
+
 					}
 				}
 				.username {
@@ -231,7 +268,8 @@
 			justify-content: center;
 			img {
 				width: auto;
-				height: 100%;
+				height: 11vw;
+				margin-top: 5em;
 			}
 		}
 		&__content {
