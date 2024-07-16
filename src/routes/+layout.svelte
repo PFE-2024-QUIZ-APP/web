@@ -43,7 +43,7 @@
     isMuted = !isMuted;
 		sound.mute(isMuted);
   }
-
+  
 	// Fonction pour gérer le son
   function handleChange(event) {
 		currentVolume = parseInt(event.target.value);
