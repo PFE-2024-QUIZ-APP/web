@@ -1,13 +1,21 @@
 <script>
-	export let text = '';
+  export let text = "";
 </script>
 
-<input type="text" class="input" bind:value={text} />
+<input type="text" bind:value={text} />
 
 <style lang="scss">
-	input {
-		margin-top: 10px;
-		padding: 10px;
-		font-size: 1.4vw;
-	}
+  input {
+    padding: 10px;
+    height: 16px;
+    font-size: 20px;
+    width: calc(100% - 20px - 8px);
+    border: 4px solid white;
+    background: #84a6c8;
+    border-radius: 10px;
+    font-family: LuckiestGuy;
+    text-transform: uppercase;
+    color: white;
+    outline: none;
+  }
 </style>

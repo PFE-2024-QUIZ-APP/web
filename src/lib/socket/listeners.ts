@@ -25,9 +25,13 @@ export const onRoomNoFound = (callback: (data: RoomNoFoundOutput) => void) => {
 }
 
 export const onAllResponse = (callback: (data: AllResponseOutput) => void) => {
-    io.on("allResponse", (data) => callback(data))
+    io.on("allResponses", (data) => callback(data))
 }
 
-export const onTimeEnded = (callback: (data: TimeEndedOutput) => void) => {
-    io.on("timeEnded", (data) => callback(data))
+export const onTimerEnded = (callback: (data: TimeEndedOutput) => void) => {
+    io.on("timerEnded", (data) => callback(data))
+}
+
+export const onSocketId = (callback: (data: string) => void) => {
+    io.on("id", (data) => callback(data))
 }

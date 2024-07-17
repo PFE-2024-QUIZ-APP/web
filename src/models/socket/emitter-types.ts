@@ -3,9 +3,7 @@ interface CreateRoomInput {
     avatar: string;
 }
 
-interface EditRoomInput {
-    uidQuizz: string;
-}
+type EditRoomInput = string
 
 interface JoinRoomInput {
     room: string;

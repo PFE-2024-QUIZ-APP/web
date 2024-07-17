@@ -6,18 +6,24 @@ interface Player {
 	responses: string[];
 }
 
+interface QuestionInfo {
+	rightAnswer: string;
+	questionText: string;
+	type: string;
+	responses: string[];
+}
+
 interface Question {
-	id: string;
-	question: string;
-	answers: string[];
+	question: QuestionInfo;
+	creator: Player;
+	currentQuestion: number;
 }
 
 interface GameModel {
 	players: Player[];
 	room: string;
 	questions: Question[];
-}
-
-interface NextQuestionOutput {
-	question: Question;
+	me: string;
+	host: boolean;
+	selectedThemeId: string
 }

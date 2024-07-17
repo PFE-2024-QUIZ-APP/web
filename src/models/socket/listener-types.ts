@@ -10,13 +10,14 @@ interface EditRoomOutput {
 
 interface EndGameOutput {
     responsesPlayers: null;
-    scorePlayers: null;
+    players: Player[];
+    currentQuestion: number;
 }
 
 interface NextQuestionOutput {
-    question: Question;
+    question: QuestionInfo;
     creator: Player;
-    currentQuestion: Question;
+    currentQuestion: number;
 }
 
 interface RoomNoFoundOutput {
@@ -24,13 +25,13 @@ interface RoomNoFoundOutput {
 }
 
 interface AllResponseOutput {
-    question: Question;
+    question: QuestionInfo;
     currentQuestion: number;
     responsesPlayers: any;
 }
 
 interface TimeEndedOutput {
-    question: Question;
+    question: QuestionInfo;
     currentQuestion: number;
     responsesPlayers: any;
 }
