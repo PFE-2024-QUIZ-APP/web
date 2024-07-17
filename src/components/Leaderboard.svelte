@@ -1,5 +1,4 @@
 <script lang="ts">
-  import avatar from "$lib/images/avatar_example.png";
   import trophyBronze from "$lib/images/trophy/trophy_bronze.png";
   import trophyGold from "$lib/images/trophy/trophy_gold.png";
   import trophySilver from "$lib/images/trophy/trophy_silver.png";
@@ -7,9 +6,29 @@
   import Button from "./Button.svelte";
   import { createEventDispatcher } from "svelte";
   import { game } from "$lib/stores/game";
+  import Avatar1 from "$lib/images/avatar/avatar_1.png";
+  import Avatar2 from "$lib/images/avatar/avatar_2.png";
+  import Avatar3 from "$lib/images/avatar/avatar_3.png";
+  import Avatar4 from "$lib/images/avatar/avatar_4.png";
+  import Avatar5 from "$lib/images/avatar/avatar_5.png";
+  import Avatar6 from "$lib/images/avatar/avatar_6.png";
+  import Avatar7 from "$lib/images/avatar/avatar_7.png";
+  import Avatar8 from "$lib/images/avatar/avatar_8.png";
+
   export let players: Player[];
 
   $: players = players.sort((a, b) => b.score - a.score);
+
+  const avatars = new Map([
+    ["avatar_1", Avatar1],
+    ["avatar_2", Avatar2],
+    ["avatar_3", Avatar3],
+    ["avatar_4", Avatar4],
+    ["avatar_5", Avatar5],
+    ["avatar_6", Avatar6],
+    ["avatar_7", Avatar7],
+    ["avatar_8", Avatar8],
+  ]);
 
   const { host } = get(game);
 
@@ -36,7 +55,7 @@
             <span>.</span>
           </div>
           <div class="avatar-container">
-            <img src={avatar} alt="avatar utilisateur" class="avatar-image" />
+            <img src={avatars.get(player.avatar)} alt="avatar utilisateur" class="avatar-image" />
           </div>
           <div class="infos-joueur">
             <div class="pseudo">{player.name}</div>

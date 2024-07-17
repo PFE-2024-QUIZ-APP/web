@@ -1,6 +1,5 @@
 <script lang="ts">
   import Button from "$components/Button.svelte";
-  import Avatar from "$lib/images/avatar_example.png";
   import Avatar1 from "$lib/images/avatar/avatar_1.png";
   import Avatar2 from "$lib/images/avatar/avatar_2.png";
   import Avatar3 from "$lib/images/avatar/avatar_3.png";
