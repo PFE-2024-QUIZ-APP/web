@@ -3,9 +3,12 @@
   import { Howler, Howl } from "howler";
   import VolumeSource from "svelte-material-icons/VolumeSource.svelte";
   import VolumeMute from "svelte-material-icons/VolumeMute.svelte";
+  import Play from "svelte-material-icons/Play.svelte"
+  import Pause from "svelte-material-icons/Pause.svelte"
   import BackgroundMusic from "$lib/audio/background_music.mp3";
 
   let isMuted = false;
+  let isPlay = false;
 
   // Variable pour gérer le volume
   let defaultVolume = 0.2;
@@ -17,7 +20,7 @@
   // Cast de la musique
   const sound = new Howl({
     src: BackgroundMusic,
-    autoplay: true,
+    autoplay: false, // autoplay désactivé pour respecter les politiques des navigateurs
     loop: true,
     html5: true,
   });
@@ -25,10 +28,15 @@
   // Volume par default de la musique
   Howler.volume(defaultVolume);
 
-  // Cast de la musique au chargement de la page
-  sound.once("load", function () {
-    sound.play();
-  });
+  // Fonction pour lancer la musique
+    function toggleMusic() {
+    isPlay = !isPlay;
+    if(isPlay) {
+      sound.play();
+    } else {
+      sound.pause();
+    }
+  }
 
   // Fonction pour mute le son
   function toggleMute() {
@@ -49,6 +57,11 @@
     currentVolume = parseInt(event.target.value);
     let convertVolume = currentVolume / 100;
     Howler.volume(convertVolume);
+    if(currentVolume == 0) {
+      isMuted = true;
+    } else {
+      isMuted = false;
+    }
   }
 </script>
 
@@ -63,6 +76,15 @@
       value={currentVolume}
       on:input={handleChange}
     />
+    <div class="play-button">
+      <button on:click={toggleMusic}>
+        {#if isPlay}
+          <Pause width="2em" height="2em" color="white" />
+        {:else}
+          <Play width="2.5em" height="2.5em" color="white" />
+        {/if}
+      </button>
+    </div>
     <div class="mute-button">
       <button on:click={toggleMute}>
         {#if isMuted}
@@ -111,7 +133,7 @@
         cursor: pointer;
       }
 
-      .mute-button {
+      .mute-button, .play-button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -125,6 +147,10 @@
           border: none;
           cursor: pointer;
         }
+      }
+
+      .play-button {
+        margin-right: 1em;
       }
     }
   }
