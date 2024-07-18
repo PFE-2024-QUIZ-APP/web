@@ -145,10 +145,9 @@
     </svg>
   {/if}
 
-  {#if percentage !== undefined}<div
-      class="proressBar"
-      style="width: {percentage}%"
-    ></div>{/if}
+  {#if percentage !== undefined}
+    <div class="progressBar" style="width: {percentage}%"></div>
+  {/if}
   <span style="z-index: 1;"><slot /></span>
 </button>
 
@@ -182,7 +181,7 @@
     &.percentage {
       position: relative;
 
-      .proressBar {
+      .progressBar {
         border-radius: 8px;
         left: 0;
         position: absolute;
@@ -193,7 +192,7 @@
       &.white {
         background-color: #eeeeee !important;
 
-        .proressBar {
+        .progressBar {
           background-color: #8b85c1 !important;
         }
       }
@@ -201,7 +200,7 @@
       &.purple {
         background-color: #aaa6cb !important;
 
-        .proressBar {
+        .progressBar {
           background-color: #8b85c1 !important;
         }
       }
@@ -209,7 +208,7 @@
       &.green {
         background-color: #abcebb !important;
 
-        .proressBar {
+        .progressBar {
           background-color: #8ed5a2;
         }
       }
@@ -217,7 +216,7 @@
       &.red {
         background-color: rgb(216, 117, 117) !important;
 
-        .proressBar {
+        .progressBar {
           background-color: #d23c3c !important;
         }
       }

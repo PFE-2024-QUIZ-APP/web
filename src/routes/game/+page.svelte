@@ -116,13 +116,15 @@
   });
 
   const handleGoHome = () => {
-    game.set({
-      players: [],
-      room: "",
-      questions: [],
-      me: "",
-      host: false,
-      selectedThemeId: "",
+    game.update((state) => {
+      return {
+        players: [],
+        room: "",
+        questions: [],
+        me: state.me,
+        host: false,
+        selectedThemeId: "",
+      };
     });
 
     gameCreation.update((state) => ({

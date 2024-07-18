@@ -1,7 +1,9 @@
 <script lang="ts">
+  import { receive } from "$lib/animation/playerTransition";
   import crown from "$lib/images/crown.png";
   import { game } from "$lib/stores/game";
   import { getAvatar } from "$models/avatars-map";
+  import { flip } from "svelte/animate";
 
   let players: Player[] = [];
 
@@ -16,8 +18,8 @@
   </div>
   <!-- Row Joueur that contain an imported avatar, a pseudo with a number of points and a crown -->
   <div class="liste-joueurs">
-    {#each players as player, index}
-      <div class="row-joueur">
+    {#each players as player, index (player.id)}
+      <div class="row-joueur" in:receive={{ key: player.id}}>
         <div class="user-avatar">
           <div class="avatar-container">
             <img
