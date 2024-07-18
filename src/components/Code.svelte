@@ -4,6 +4,7 @@
   import { get } from "svelte/store";
   import Button from "./Button.svelte";
   import { createEventDispatcher } from "svelte";
+  import Close from "svelte-material-icons/Close.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -12,6 +13,8 @@
   let code = ["", "", "", "", ""];
 
   $: canJoin = code.every((char) => char !== "");
+
+  $: isEmpty = code.some((char) => char !== "");
 
   if (roomCode?.length === 5) {
     code = roomCode.split("");
@@ -39,6 +42,26 @@
     dispatch("join");
   };
 
+  function handlePaste(event: any) {
+    event.preventDefault();
+    const pastedText = (event.clipboardData.getData('text').toUpperCase()).substring(0,5);
+    const pastedTextSplitted = pastedText.split('');
+
+    let indexCode = 0;
+
+    for (let i = 0; i < code.length; i++) {
+      if (code[i] === "" && indexCode < pastedTextSplitted.length) {
+        // Remplir l'élément vide avec un élément de code2
+        code[i] = pastedTextSplitted[indexCode];
+        indexCode++;
+      }
+    }
+  }
+
+  function clearCode() {
+    code = new Array(5).fill("");
+  }
+
   const back = () => {
     dispatch("goToMainPage");
   };
@@ -48,14 +71,22 @@
   <h2>Code de la partie</h2>
 
   <div class="code-input">
-    {#each code as char, index}
+      {#each code as char, index}
       <input
         type="text"
         value={char}
         on:input={(e) => updateCode(e, index)}
+        on:paste={(e) => handlePaste(e)}
         maxlength="1"
       />
     {/each}
+    {#if isEmpty}
+    <div class="clear-code">
+      <button on:click={clearCode}>
+        <Close width="3em" height="3em" color="white" />
+      </button>
+    </div>
+    {/if}
   </div>
 
   <Button disabled={!canJoin} color="purple" icon="play" on:click={join}
@@ -79,6 +110,7 @@
     }
 
     .code-input {
+      position: relative;
       margin-bottom: 50px;
 
       input {
@@ -99,6 +131,26 @@
       input:focus {
         margin: 0 20px 0;
         border-bottom: 4px solid white;
+      }
+
+      .clear-code {
+        position: absolute;
+        right: -5em;
+        bottom: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border: 3px solid white;
+        border-radius: 100px;
+
+        button {
+          margin-top: 3px;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+        }
       }
     }
   }
