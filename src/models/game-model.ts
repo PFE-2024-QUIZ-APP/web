@@ -2,7 +2,7 @@ interface Player {
 	id: string;
 	name: string;
 	score: number;
-	avatar: string;
+	avatar: number;
 	responses: string[];
 }
 

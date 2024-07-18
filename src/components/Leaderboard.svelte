@@ -6,29 +6,11 @@
   import Button from "./Button.svelte";
   import { createEventDispatcher } from "svelte";
   import { game } from "$lib/stores/game";
-  import Avatar1 from "$lib/images/avatar/avatar_1.png";
-  import Avatar2 from "$lib/images/avatar/avatar_2.png";
-  import Avatar3 from "$lib/images/avatar/avatar_3.png";
-  import Avatar4 from "$lib/images/avatar/avatar_4.png";
-  import Avatar5 from "$lib/images/avatar/avatar_5.png";
-  import Avatar6 from "$lib/images/avatar/avatar_6.png";
-  import Avatar7 from "$lib/images/avatar/avatar_7.png";
-  import Avatar8 from "$lib/images/avatar/avatar_8.png";
+  import { getAvatar } from "$models/avatars-map";
 
   export let players: Player[];
 
   $: players = players.sort((a, b) => b.score - a.score);
-
-  const avatars = new Map([
-    ["avatar_1", Avatar1],
-    ["avatar_2", Avatar2],
-    ["avatar_3", Avatar3],
-    ["avatar_4", Avatar4],
-    ["avatar_5", Avatar5],
-    ["avatar_6", Avatar6],
-    ["avatar_7", Avatar7],
-    ["avatar_8", Avatar8],
-  ]);
 
   const { host } = get(game);
 
@@ -55,7 +37,11 @@
             <span>.</span>
           </div>
           <div class="avatar-container">
-            <img src={avatars.get(player.avatar)} alt="avatar utilisateur" class="avatar-image" />
+            <img
+              src={getAvatar(player.avatar)}
+              alt="avatar utilisateur"
+              class="avatar-image"
+            />
           </div>
           <div class="infos-joueur">
             <div class="pseudo">{player.name}</div>

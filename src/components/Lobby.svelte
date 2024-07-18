@@ -1,19 +1,12 @@
 <script lang="ts">
   import Button from "$components/Button.svelte";
-  import Avatar1 from "$lib/images/avatar/avatar_1.png";
-  import Avatar2 from "$lib/images/avatar/avatar_2.png";
-  import Avatar3 from "$lib/images/avatar/avatar_3.png";
-  import Avatar4 from "$lib/images/avatar/avatar_4.png";
-  import Avatar5 from "$lib/images/avatar/avatar_5.png";
-  import Avatar6 from "$lib/images/avatar/avatar_6.png";
-  import Avatar7 from "$lib/images/avatar/avatar_7.png";
-  import Avatar8 from "$lib/images/avatar/avatar_8.png";
   import Refresh from "svelte-material-icons/Refresh.svelte";
   import InputText from "$components/InputText.svelte";
   import { gameCreation } from "$lib/stores/gameCreation";
   import { get } from "svelte/store";
   import { goto } from "$app/navigation";
   import { createEventDispatcher } from "svelte";
+  import { getAvatar } from "$models/avatars-map";
 
   const dispatch = createEventDispatcher();
 
@@ -32,7 +25,7 @@
   $: gameCreation.update((state) => ({
     ...state,
     userName: pseudo,
-    avatar: `avatar_${currentAvatarIndex + 1}`,
+    avatar: currentAvatarIndex + 1,
   }));
 
   const goToGamePage = () => {
@@ -48,21 +41,7 @@
     dispatch("goToCodePage");
   };
 
-  let current = 0;
-  let show = 1;
-
   let currentAvatarIndex = 0;
-
-  const avatars = new Map([
-    ["avatar_1", Avatar1],
-    ["avatar_2", Avatar2],
-    ["avatar_3", Avatar3],
-    ["avatar_4", Avatar4],
-    ["avatar_5", Avatar5],
-    ["avatar_6", Avatar6],
-    ["avatar_7", Avatar7],
-    ["avatar_8", Avatar8],
-  ]);
 
   const refreshAvatar = () => {
     if (currentAvatarIndex < 7) {
@@ -82,7 +61,7 @@
       <div class="user-avatar">
         <div class="avatar-container">
           <img
-            src={avatars.get(`avatar_${currentAvatarIndex + 1}`)}
+            src={getAvatar(currentAvatarIndex + 1)}
             alt="avatar utilisateur"
             class="avatar-image"
           />

@@ -16,7 +16,7 @@
   let showCopyMessage = false;
 
   const handleCopyLink = () => {
-    const roomLink = gameData.room;
+    const roomLink = "https://friizzz.vercel.app/" + gameData.room;
     navigator.clipboard
       .writeText(roomLink)
       .then(() => {

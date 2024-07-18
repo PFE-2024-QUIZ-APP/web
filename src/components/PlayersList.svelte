@@ -1,31 +1,12 @@
 <script lang="ts">
-  import avatar from "$lib/images/avatar_example.png";
   import crown from "$lib/images/crown.png";
   import { game } from "$lib/stores/game";
-  import Avatar1 from "$lib/images/avatar/avatar_1.png";
-  import Avatar2 from "$lib/images/avatar/avatar_2.png";
-  import Avatar3 from "$lib/images/avatar/avatar_3.png";
-  import Avatar4 from "$lib/images/avatar/avatar_4.png";
-  import Avatar5 from "$lib/images/avatar/avatar_5.png";
-  import Avatar6 from "$lib/images/avatar/avatar_6.png";
-  import Avatar7 from "$lib/images/avatar/avatar_7.png";
-  import Avatar8 from "$lib/images/avatar/avatar_8.png";
+  import { getAvatar } from "$models/avatars-map";
 
   let players: Player[] = [];
 
-  const avatars = new Map([
-    ["avatar_1", Avatar1],
-    ["avatar_2", Avatar2],
-    ["avatar_3", Avatar3],
-    ["avatar_4", Avatar4],
-    ["avatar_5", Avatar5],
-    ["avatar_6", Avatar6],
-    ["avatar_7", Avatar7],
-    ["avatar_8", Avatar8],
-  ]);
-
   game.subscribe((data: GameModel) => {
-    players = data.players
+    players = data.players;
   });
 </script>
 
@@ -39,7 +20,11 @@
       <div class="row-joueur">
         <div class="user-avatar">
           <div class="avatar-container">
-            <img src={avatars.get(player.avatar)} alt="avatar utilisateur" class="avatar-image" />
+            <img
+              src={getAvatar(player.avatar)}
+              alt="avatar utilisateur"
+              class="avatar-image"
+            />
           </div>
         </div>
         <div class="infos-joueur">

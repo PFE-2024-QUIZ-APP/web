@@ -25,6 +25,7 @@
   import Countdown from "$components/Countdown.svelte";
   import Questions from "$components/Questions.svelte";
   import Leaderboard from "$components/Leaderboard.svelte";
+  import { socketIsConnected } from "$lib/socket/webSocketConnection";
 
   const { userName, room, avatar, isCreation } = get(gameCreation);
   let startingTimer: boolean = false;
@@ -35,22 +36,29 @@
   let players: Player[] = [];
 
   onMount(() => {
-    onConnect(() => {
-      if (userName && avatar) {
-        if (isCreation) {
-          createRoomEmit({ userName, avatar });
-        } else if (room) {
-          console.log("room", room);
-          joinRoomEmit({ userName, avatar, room });
-        } else {
-          console.error("room is required");
-        }
-      } else {
-        console.error("userName and avatar are required");
-        goto("/");
-      }
-    });
+    if (socketIsConnected()) {
+      joinOrCreateRoom();
+    } else {
+      onConnect(() => {
+        joinOrCreateRoom();
+      });
+    }
   });
+
+  const joinOrCreateRoom = () => {
+    if (userName && avatar) {
+      if (isCreation) {
+        createRoomEmit({ userName, avatar });
+      } else if (room) {
+        joinRoomEmit({ userName, avatar, room });
+      } else {
+        console.error("room is required");
+      }
+    } else {
+      console.error("userName and avatar are required");
+      goto("/");
+    }
+  };
 
   onRoomData((data) => {
     // If no questions, the game has restarted

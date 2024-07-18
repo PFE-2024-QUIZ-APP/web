@@ -64,8 +64,7 @@
             disabledHover={timerEnded || myResponse !== ""}
             question={true}
             active={myResponse === response}
-            percentage={timerEnded &&
-            allResponses.length > 0 &&
+            percentage={myResponse !== "" &&
             (allResponses.filter((r) => r === response).length /
               allResponses.length) *
               100 !==

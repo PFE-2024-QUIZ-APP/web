@@ -1,6 +1,6 @@
 interface CreateRoomInput {
     userName: string;
-    avatar: string;
+    avatar: number;
 }
 
 type EditRoomInput = string
@@ -8,7 +8,7 @@ type EditRoomInput = string
 interface JoinRoomInput {
     room: string;
     userName: string;
-    avatar: string;
+    avatar: number;
 }
 
 interface ResponsePlayerInput {
