@@ -3,9 +3,10 @@
   import { Howler, Howl } from "howler";
   import VolumeSource from "svelte-material-icons/VolumeSource.svelte";
   import VolumeMute from "svelte-material-icons/VolumeMute.svelte";
-  import Play from "svelte-material-icons/Play.svelte"
-  import Pause from "svelte-material-icons/Pause.svelte"
+  import Play from "svelte-material-icons/Play.svelte";
+  import Pause from "svelte-material-icons/Pause.svelte";
   import BackgroundMusic from "$lib/audio/background_music.mp3";
+  import Favicon from "$lib/images/favicon.ico";
 
   let isMuted = false;
   let isPlay = false;
@@ -29,9 +30,9 @@
   Howler.volume(defaultVolume);
 
   // Fonction pour lancer la musique
-    function toggleMusic() {
+  function toggleMusic() {
     isPlay = !isPlay;
-    if(isPlay) {
+    if (isPlay) {
       sound.play();
     } else {
       sound.pause();
@@ -57,13 +58,18 @@
     currentVolume = parseInt(event.target.value);
     let convertVolume = currentVolume / 100;
     Howler.volume(convertVolume);
-    if(currentVolume == 0) {
+    if (currentVolume == 0) {
       isMuted = true;
     } else {
       isMuted = false;
     }
   }
 </script>
+
+<svelte:head>
+  <title>Friizzz - Le quiz à potentiel infinie</title>
+  <link rel="icon" href={Favicon} />
+</svelte:head>
 
 <div class="app">
   <slot />
@@ -133,7 +139,8 @@
         cursor: pointer;
       }
 
-      .mute-button, .play-button {
+      .mute-button,
+      .play-button {
         display: flex;
         align-items: center;
         justify-content: center;
