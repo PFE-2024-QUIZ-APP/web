@@ -4,6 +4,7 @@
   import VolumeSource from "svelte-material-icons/VolumeSource.svelte";
   import VolumeMute from "svelte-material-icons/VolumeMute.svelte";
   import BackgroundMusic from "$lib/audio/background_music.mp3";
+  import Favicon from "$lib/images/favicon.ico";
 
   let isMuted = false;
 
@@ -52,6 +53,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Friizzz - Le jeu a potentiel infinie</title>
+  <link rel="icon" type="image/x-icon" href={Favicon} />
+</svelte:head>
 <div class="app">
   <slot />
 
